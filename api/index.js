@@ -5,11 +5,10 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
-const productRoute = require("./routes/products")
-const registerRoute = require("./routes/registers")
+const productRoute = require("./routes/products");
+const registerRoute = require("./routes/registers");
 const categoryRoute = require("./routes/categories");
 const path = require("path");
-
 
 const app = express();
 dotenv.config();
@@ -25,6 +24,14 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+app.use(
+  cors({
+    origin: ["https://admin-gamma-kohl.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
